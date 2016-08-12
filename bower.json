@@ -1,0 +1,14 @@
+{
+  "name": "t-passenger-decorator",
+  "description": "This repository contains all the decorators (view translators) used in activity search to book flow. The decorators translate the data sent by external component and make it compatible with view component.",
+  "main": "t-activity-passenger-decorator.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
