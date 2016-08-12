@@ -1,4 +1,4 @@
-# \<t-activity-passenger-decorator\>
+# \<t-activity-decorator\>
 
 This repository contains all the decorators (view translators) used in activity search to book flow. The decorators translate the data sent by external component and translates it to data compatible with view component.
 
