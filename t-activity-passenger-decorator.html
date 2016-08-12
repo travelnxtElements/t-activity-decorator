@@ -8,7 +8,9 @@
 
     <h3>Input Property Format:</h3>
 
-        var input = [{            
+        var input = 2
+
+        var passengerTypesInfo = [{
             "fare": null,
             "maxAge":99,
             "minAge":13,
@@ -21,13 +23,14 @@
             "displayPassengerType":"Adult",
             "singlePassengerType":"Adult",
             "multiplePassengerType":"Adults"
-        }]
+        }];
 
     <h3>Example:</h3>
 
         <t-activity-passenger-decorator
             input="[[input]]"
             output="{{output}}"
+            passenger-types-info="[[passengerTypesInfo]]"
             on-output-changed="_outputChanged"
         </t-activity-passenger-decorator>
 
@@ -63,15 +66,18 @@
                             return {
                                 title: '',
                                 firstName: '',
-                                middleName: '',
                                 lastName: '',
-                                suffix: '',
-                                dob: '',
-                                gender: '',
-                                emailId: ''
+                                dob: null
                             };
                         },
                         readOnly: true
+                    },
+
+                    /**
+                     * This is the passenger information for the count (input property) specified.
+                    */
+                    passengerTypesInfo: {
+                        type: Array
                     }
 
                 },
@@ -81,6 +87,10 @@
                  * It overrides behavior method.
                  */
                 __decorate: function () {
+
+                    if (!this.input || !this.passengerTypesInfo) {
+                        return;
+                    }
 
                     this._setOutput({
                         passengerList: this._getPassengerData(),
@@ -97,7 +107,7 @@
                     var passengerList = [];
 
                     //return default passenger information
-                    if (!this.input || !this.input.length) {
+                    if (!this.passengerTypesInfo || !this.passengerTypesInfo.length) {
 
                         var newPassenger = Object.assign({}, this.passenger);
 
@@ -111,16 +121,16 @@
                     }
 
                     //create passenger list as per input data
-                    for (var i = 0; i < this.input.length; i++) {
+                    for (var i = 0; i < this.passengerTypesInfo.length; i++) {
 
-                        for (var j = 1; j <= this.input[i].quantity; j++) {
+                        for (var j = 1; j <= this.passengerTypesInfo[i].quantity; j++) {
 
                             var newPassenger = Object.assign({}, this.passenger);
 
-                            newPassenger.type = this.input[i].passengerType;
-                            newPassenger.header = this.input[i].passengerType + ' ' + j;
-                            newPassenger.minAge = this.input[i].minAge;
-                            newPassenger.maxAge = this.input[i].maxAge;
+                            newPassenger.type = this.passengerTypesInfo[i].passengerType;
+                            newPassenger.header = this.passengerTypesInfo[i].passengerType + ' ' + j;
+                            newPassenger.minAge = this.passengerTypesInfo[i].minAge;
+                            newPassenger.maxAge = this.passengerTypesInfo[i].maxAge;
 
                             passengerList.push(newPassenger);
                         }
