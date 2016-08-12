@@ -1,27 +1,134 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../t-behavior/t-decorator-behavior.html">
+
+<!--
+    <h3>Details:</h3>
+
+        `t-activity-passenger-decorator` is a decorator component which translates `passengerTypesInfo` of activity option into passenger info.
+
+    <h3>input Property Format:</h3>
+
+        var input = [{            
+            "fare": null,
+            "maxAge":99,
+            "minAge":13,
+            "minQuantity":1,
+            "maxQuantity":9,
+            "passengerType":"Adult",
+            "step":1,
+            "isStepSpecified":false,
+            "quantity":2,
+            "displayPassengerType":"Adult",
+            "singlePassengerType":"Adult",
+            "multiplePassengerType":"Adults"
+        }]
+
+    <h3>Example:</h3>
+
+        <t-activity-passenger-decorator
+            input="[[input]]"
+            output="{{output}}"
+            on-output-changed="_outputChanged"
+        </t-activity-passenger-decorator>
+
+    @demo demo/index.html
+-->
 
 <dom-module id="t-activity-passenger-decorator">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
 
-  <script>
-    Polymer({
+    <template></template>
 
-      is: 't-activity-passenger-decorator',
+    <script>
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 't-activity-passenger-decorator',
-        },
-      },
+        (function () {
 
-    });
-  </script>
+            'use strict'
+
+            Polymer({
+
+                is: 't-activity-passenger-decorator',
+
+                behaviors: [
+                    TravelNxt.Behaviors.DecoratorBehavior
+                ],
+
+                properties: {
+
+                    /**
+                     * This is the reference object for creating passenger list.
+                    */
+                    passenger: {
+                        type: Object,
+                        value: function () {
+                            return {
+                                title: '',
+                                firstName: '',
+                                middleName: '',
+                                lastName: '',
+                                suffix: '',
+                                dob: '',
+                                gender: '',
+                                emailId: ''
+                            };
+                        },
+                        readOnly: true
+                    }
+
+                },
+
+                /**
+                 * This is the observer function for `input` property.
+                 * It overrides behavior method.
+                 */
+                __decorate: function () {
+
+                    this.output = {
+                        passengerList: this._getPassengerData(),
+                        phone: '',
+                        email:''
+                    };
+                },
+
+                /*
+                 * Builds data for all passengers
+                */
+                _getPassengerData: function () {
+
+                    var passengerList = [];
+
+                    //return default passenger information
+                    if (!this.input || !this.input.length) {
+
+                        var newPassenger = Object.assign({}, this.passenger);
+
+                        newPassenger.type = 'Adult';
+                        newPassenger.minAge = 0;
+                        newPassenger.maxAge = 99;
+
+                        passengerList.push(newPassenger);
+
+                        return passengerList;
+                    }
+
+                    //create passenger list as per input data
+                    for (var i = 0; i < this.input.length; i++) {
+
+                        for (var j = 1; j <= this.input[i].quantity; j++) {
+
+                            var newPassenger = Object.assign({}, this.passenger);
+
+                            newPassenger.type = this.input[i].passengerType;
+                            newPassenger.header = this.input[i].passengerType + ' ' + j;
+                            newPassenger.minAge = this.input[i].minAge;
+                            newPassenger.maxAge = this.input[i].maxAge;
+
+                            passengerList.push(newPassenger);
+                        }
+                    }
+
+                    return passengerList;
+                },
+            });            
+        })()
+    </script>
 </dom-module>
