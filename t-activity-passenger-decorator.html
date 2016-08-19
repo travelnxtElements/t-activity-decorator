@@ -74,6 +74,13 @@
                     },
 
                     /**
+                     * True if activity needs all the passenger details
+                    */
+                    allPassengersInfoRequired: {
+                        type: Boolean                        
+                    }
+
+                    /**
                      * This is the passenger information for the count (input property) specified.
                     */
                     passengerTypesInfo: {
@@ -107,7 +114,7 @@
                     var passengerList = [];
 
                     //return default passenger information
-                    if (!this.passengerTypesInfo || !this.passengerTypesInfo.length) {
+                    if (!this.passengerTypesInfo || !this.passengerTypesInfo.length || !this.allPassengersInfoRequired) {
 
                         var newPassenger = Object.assign({}, this.passenger);
 
