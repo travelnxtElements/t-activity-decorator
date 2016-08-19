@@ -1,0 +1,221 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../t-behavior/t-decorator-behavior.html">
+
+<!--
+    <h3>Details:</h3>
+
+        `t-activity-confirmation-decorator` is a decorator component which translates `BookedTripFolder` into `passengerInfo` property of `t-passenger-info-page`.
+
+    <h3>Input Property Format:</h3>
+        {
+            "confirmationNumber": "94351",
+            "bookingStatus": "Purchased",
+            "id": "5aa8ef68-1055-4148-b029-c8f1bcacb4b5",
+            "name": "Trip:8/18/2016",
+            "duration": {
+                "start": {
+                    "date": "Thursday, 09/15/2016",
+                    "time": "6:30 PM",
+                    "systemDateTime": "2016-09-15T18:30:00"
+                },
+                "end": {
+                    "date": "Thursday, 09/15/2016",
+                    "time": "6:30 PM",
+                    "systemDateTime": "2016-09-15T18:30:00"
+                }
+            },
+            "inventoriesInfo": [{
+                "id": "0",
+                "bookingStatus": "Purchased",
+                "inventory": {
+                    "description": "<p>\t\t\t\t\t\tLong Description!\n\t\t\n\t\t</p>",
+                    "category": {
+                        "type": "NonTransfer",
+                        "name": "Outdoor Activities"
+                    },
+                    "heroImageUrl": "",
+                    "photoUrls": [],
+                    "legalText": "<b>Conditions of Sale:</b><br>Long Text of 'Important Information'. additional information such as: <ul><li>Hotel for pick up</li></ul>",
+                    "duration": "Varies",
+                    "schedule": "Las Vegas, NevadaDaily except Wednesday10am, 12pm or 2pm<br>",
+                    "additionalText": "<ul><li>Confirmation will be received at time of booking</li></ul>",
+                    "minFare": {},
+                    "policies": [],
+                    "voucherUrl": "",
+                    "questions": null,
+                    "type": "Activity",
+                    "options": [],
+                    "generalInformation": null,
+                    "inclusions": null,
+                    "exclusions": null,
+                    "generalPolicies": [],
+                    "isCancellable": true,
+                    "allPassengersInfoRequired": false,
+                    "isGuaranteeRequired": true,
+                    "id": "0",
+                    "name": "Dig This: Heavy Equipment Playground",
+                    "fare": {},
+                    "fareWithAddOns": {},
+                    "isPostPaid": false,
+                    "isSoldOut": false,
+                    "isPreferred": false,
+                    "addOns": null,
+                    "preferredSortOrder": 0,
+                    "source": {},
+                    "restrictions": null,
+                    "validatingCarrier": null
+                },
+                "searchCriteria": {
+                    "productType": "Activity",
+                    "inventoryId": null,
+                    "location": {},
+                    "fromDate": {},
+                    "toDate": {},
+                    "currency": null,
+                    "culture": null,
+                    "generatedOn": null,
+                    "searchId": null,
+                    "isSuccessful": false,
+                    "responseContentType": null,
+                    "attributes": null
+                },
+                "passengerSegments": [{
+                    "id": 0,
+                    "confirmationNumber": "M8SXR",
+                    "status": "Purchased",
+                    "cancellationNumber": null,
+                    "vendorConfirmationNumber": "M8SXR"
+                }],
+                "paymentIds": [0],
+                "paymentBreakups": [{
+                    "amount": {
+                        "amount": 161.03,
+                        "currency": "USD",
+                        "displayAmount": "$161.03",
+                        "type": "USD"
+                    },
+                    "passengerId": "0",
+                    "paymentId": 0,
+                    "paymentType": "CreditCard"
+                }],
+                "leadPassengerId": 0,
+                "hasOrderFulfillmentDatePassed": false,
+                "promotionalCode": "",
+                "postBookingDetails": null
+            }],
+            "fare": {
+                "isRefundable": false,
+                "components": [{
+                    "money": {
+                        "amount": 161.03,
+                        "currency": "USD",
+                        "displayAmount": "$161.03",
+                        "type": "USD"
+                    },
+                    "components": [{
+                        "amount": 0,
+                        "currency": null,
+                        "displayAmount": " 0",
+                        "type": null
+                    }],
+                    "type": "BaseFare",
+                    "properties": []
+                }],
+                "equivalents": null
+            },
+            "passengers": [{
+                "id": 0,
+                "title": "Mr",
+                "firstName": "Ganesh",
+                "middleName": null,
+                "lastName": "ratnaparkhi",
+                "gender": "Male",
+                "suffix": null,
+                "dateOfBirth": {
+                    "date": "Tuesday, 09/04/1990",
+                    "time": "12:00 AM",
+                    "systemDateTime": "1990-09-04T00:00:00"
+                },
+                "emailAddress": "gratnaparkhi@tavisca.com",
+                "phoneNumber": "1234567890",
+                "type": "Adult",
+                "redressNumber": null,
+                "memberships": [],
+                "airMemberships": null,
+                "attributes": [{
+                    "name": "travelprogram",
+                    "keyValuePairs": []
+                }, {
+                    "name": "CustomFields",
+                    "keyValuePairs": []
+                }],
+                "passportInfo": null
+            }],
+            "payments": [],
+            "status": {
+                "isSuccessful": true,
+                "code": 200,
+                "message": "Successful",
+                "referenceId": "99042850-c084-4766-a0f8-9d57a6b79a24",
+                "additionalMessages": []
+            }
+        }    
+
+    <h3>Example:</h3>
+
+        <t-activity-confirmation-decorator
+            input="[[input]]"
+            output="{{output}}"
+        </t-activity-confirmation-decorator>
+
+    @demo demo/index.html
+-->
+
+<dom-module id="t-activity-confirmation-decorator">
+
+    <template></template>
+
+    <script>
+
+        (function () {
+
+            'use strict'
+
+            Polymer({
+
+                is: 't-activity-confirmation-decorator',
+
+                behaviors: [
+                    TravelNxt.Behaviors.DecoratorBehavior
+                ],
+
+                properties: {
+
+
+                },
+
+                /**
+                 * This is the observer function for `input` property.
+                 * It overrides behavior method.
+                 */
+                __decorate: function () {
+
+                    if (!this.input) {
+                        return;
+                    }
+
+                    this._setOutput({                            
+                        confirmationNumber: this.input.confirmationNumber,
+                        bookingStatus: this.input.bookingStatus,
+                        name: this.input.name,
+                        itinerary: this.input.inventoriesInfo[0].inventory,
+                        paymentBreakup: this.input.inventoriesInfo[0].paymentBreakups[0],
+                        searchCriteria: this.input.inventoriesInfo[0].searchCriteria,
+                        passengers: this.input.passengers,
+                        passengerSegment: this.input.inventoriesInfo[0].passengerSegments[0]
+                    });
+                }
+            });            
+        })()
+    </script>    
+</dom-module>
