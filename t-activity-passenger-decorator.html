@@ -118,8 +118,8 @@
 
                         var newPassenger = Object.assign({}, this.passenger);
 
-                        newPassenger.type = 'Adult';
-                        newPassenger.minAge = 0;
+                        newPassenger.type = this._getDefaultPassengerType();
+                        newPassenger.minAge = newPassenger.type.toLowerCase() === 'senior' ? 65 : 12;
                         newPassenger.maxAge = 99;
                         newPassenger.header = "";
 
@@ -146,7 +146,26 @@
 
                     return passengerList;
                 },
-            });            
+
+                /**
+                 * Returns default passenger type for selected itinerary
+                 * @return {Void}
+                 */
+                _getDefaultPassengerType: function () {
+                    var paxType = 'Adult';
+                    if (this.passengerTypesInfo && this.passengerTypesInfo.length) {
+                        for (var i = 0; i < this.passengerTypesInfo.length; i++) {
+                            if (this.passengerTypesInfo[i].passengerType.toLowerCase() === 'adult') {
+                                return this.passengerTypesInfo[i].passengerType;
+                            }
+                            if (this.passengerTypesInfo[i].passengerType.toLowerCase() === 'senior') {
+                                paxType = this.passengerTypesInfo[i].passengerType;
+                            }
+                        }
+                    }
+                    return paxType;
+                }
+            });
         })()
-    </script>    
+    </script>
 </dom-module>
