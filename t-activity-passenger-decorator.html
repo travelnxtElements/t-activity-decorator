@@ -95,9 +95,11 @@
                  */
                 __decorate: function () {
 
-                    if (!this.input || !this.passengerTypesInfo) {
+                    if (!this._isInputChanged() || !this.passengerTypesInfo) {
                         return;
                     }
+
+                    this._set_input(this.input);
 
                     this._setOutput({
                         passengerList: this._getPassengerData(),
