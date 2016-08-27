@@ -88,11 +88,9 @@
                  */
                 __decorate: function () {
 
-                    if (!this._isInputChanged() || !this.passengerTypesInfo) {
+                    if (!this.passengerTypesInfo) {
                         return;
                     }
-
-                    this._set_input(this.input);
 
                     this._setOutput({
                         passengerList: this._getPassengerData(),
@@ -109,7 +107,7 @@
                     var passengerList = [];
 
                     //return default passenger information
-                    if (!this.passengerTypesInfo || !this.passengerTypesInfo.length || !this.input.allPassengersInfoRequired) {
+                    if (!this.passengerTypesInfo || !this.passengerTypesInfo.length || !this.allPassengersInfoRequired) {
 
                         var newPassenger = Object.assign({}, this.passenger);
 
