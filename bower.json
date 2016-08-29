@@ -1,5 +1,10 @@
 {
   "name": "t-activity-decorator",
+  "version": "0.0.0",
+  "authors": [
+    "Manoj Chalode <chalodem@gmail.com>",
+    "Ganesh Ratnaparkhi <ganeshr43@gmail.com>"
+  ],
   "description": "This repository contains all the decorators (view translators) used in activity search to book flow. The decorators translate the data sent by external component and make it compatible with view component.",
   "main": "t-activity-passenger-decorator.html",
   "dependencies": {
