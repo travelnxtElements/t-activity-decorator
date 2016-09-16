@@ -124,6 +124,10 @@
                     //create passenger list as per input data
                     for (var i = 0; i < this.passengerTypesInfo.length; i++) {
 
+                        if (this.passengerTypesInfo[i].passengerType.toLowerCase() === 'youth') {
+                            continue;
+                        }
+
                         for (var j = 1; j <= this.passengerTypesInfo[i].quantity; j++) {
 
                             var newPassenger = Object.assign({}, this.passenger);
